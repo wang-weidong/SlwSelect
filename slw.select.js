@@ -1,5 +1,8 @@
 /**
- * SlwPlugins.SlwSelect v1.0 2017.10 by CSS WangWeidong
+ * https://github.com/wang-weidong/SlwSelect
+ * 
+ * SlwPlugins.SlwSelect v1.0 2017.10 by CSS WangWeidong 
+ * Released under the MIT license
  */
 ;
 (function() {
