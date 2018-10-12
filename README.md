@@ -1,6 +1,6 @@
 # SlwSelect/(Super Lightweight SlwSelect)
 
-Javascript Select/Input width autocomplete
+Javascript Select/Input with autocomplete
 
 Licensed under the MIT License
  
