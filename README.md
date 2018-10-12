@@ -4,7 +4,9 @@ Javascript Select/Input with autocomplete
 
 Licensed under the MIT License
  
-[Demo](https://wang-weidong.github.io/SlwSelect/demo/index.html "Demo")
+[Demo1](https://wang-weidong.github.io/SlwSelect/demo/index.html "Demo")
+
+[Demo2](https://wang-weidong.github.io/SlwSelect/demo/ext.html "Demo")
 
 ## Browser Support ##
 - Internet Explorer: 6, 7, 8, 9, 10, 11
