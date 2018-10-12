@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Slwcomplete demo</title>
+<script type="text/javascript" src="jquery-1.7.min.js"></script>
+<script type="text/javascript" src="../slw.js"></script>
+<script type="text/javascript" src="../slw.dict.min.js"></script>
+<script type="text/javascript" src="../slw.complete.min.js"></script>
+<script type="text/javascript" src="../slw.select.js"></script>
+<script type="text/javascript" src="data/data2.js"></script>
+<link rel="stylesheet" href="../style/select.css" type="text/css" />
+</head>
+
+<body>
+	<h1>Slwcomplete Demo</h1>
+	<h2>base on &lt;input&gt; Slw.Dict</h2>
+
+	<div style="margin: 20px">
+		<table class="table table-bordered editTable form-group-sm">
+			<thead>
+				<tr>
+					<th colspan="12">表单</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="firstRow">
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+				</tr>
+
+				<tr>
+					<td class="tdLable" colspan="3">输入框（Ajax）</td>
+					<td colspan="9"><input class="form-control" id="json2" name="json2" type="text" value="2" /></td>
+				</tr>
+
+				<tr>
+					<td class="tdLable" colspan="3">输入框（函数）</td>
+					<td colspan="9"><input class="form-control" id="fun" name="fun" type="text" value="110000" /></td>
+				</tr>
+
+				<tr>
+					<td class="tdLable" colspan="3">输入框（数据字典1）</td>
+					<td colspan="9"><input class="form-control" id="dict1" name="dict1" type="text" value="1" /></td>
+				</tr>
+				<tr>
+					<td class="tdLable" colspan="3">多选输入框（数据字典2）</td>
+					<td colspan="9"><input class="form-control" id="dict2" name="dict2" multiple="multiple" type="text" value="2,3" /></td>
+				</tr>
+				<tr>
+					<td class="tdLable" colspan="3">级联输入框1（数据集）</td>
+					<td colspan="4"><input class="form-control" id="dict31" name="dict31" type="text" value="模板类型" /></td>
+					<td colspan="5"><input class="form-control" id="dict32" name="dict32" type="text" value="1" /></td>
+				</tr>
+				<tr>
+					<td class="tdLable" colspan="3">级联输入框2（过滤）</td>
+					<td colspan="4"><input class="form-control" id="dict41" name="dict41" type="text" value="字符串" /></td>
+					<td colspan="5"><input class="form-control" id="dict42" name="dict42" type="text" value="" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<script>
+		$(function() {
+			$('#json2').slwSelect({
+				'data' : "data/data2.json",
+				'ajaxDataType' : 'json'
+			});
+			$('#fun').slwSelect({
+				'data' : function() {
+					var provinceStr = '110000,北京市,120000,天津市,130000,河北省,140000,山西省,150000,内蒙古,210000,辽宁省,220000,吉林省,230000,黑龙江,310000,上海市,320000,江苏省,330000,浙江省,340000,安徽省,350000,福建省,360000,江西省,370000,山东省,410000,河南省,420000,湖北省,430000,湖南省,440000,广东省,450000,广西,460000,海南省,500000,重庆市,510000,四川省,520000,贵州省,530000,云南省,540000,西藏,610000,陕西省,620000,甘肃省,630000,青海省,640000,宁夏,650000,新疆';
+					var province = provinceStr.split(',');
+					var data = [];
+					for (var i = 0; i < province.length; i = i + 2) {
+						var tmp = {
+							'value' : province[i],
+							'label' : province[i + 1] + '（' + province[i] + '）'
+						};
+						data.push(tmp);
+					}
+					return data;
+				},
+				'ajaxDataType' : 'json',
+				'maxHeight' : 300
+			});
+			var dict32, dict42;
+			
+			var dictInput = function() {
+				$('#dict1').slwSelect({
+					'data' : 'd_root@d_sex',
+					'ajaxDataType' : 'dict',
+					selectInputQuery : false
+				});
+				$('#dict2').slwSelect({
+					'data' : 'd_generator@d_entity_type',
+					'ajaxDataType' : 'dict',
+					debug : false
+				});
+				dict32 = $('#dict32').slwSelect({
+					'data' : 'd_generator@d_template_type',
+					'ajaxDataType' : 'dict',
+					debug : false
+				});
+				dict42 = $('#dict42').slwSelect({
+					'data' : 'd_generator@QuerySetting',
+					'ajaxDataType' : 'dict',
+					selectInputQuery : false,
+					dataFormat : function(item) {
+						item.label = item.label;
+						item.text = item.label;
+					},
+					dataFilter : function(dataSrc) {
+						var data = [];
+						//'字符串', '日期、数字', '下拉选择'
+						switch ($('#dict41').val()) {
+							case '字符串':
+								data.push(dataSrc[0]);
+								data.push(dataSrc[1]);
+								break;
+							case '日期、数字':
+								data.push(dataSrc[2]);
+								data.push(dataSrc[3]);
+								break;
+							case '下拉选择':
+								data.push(dataSrc[4]);
+								data.push(dataSrc[5]);
+								break;
+						}
+						return data;
+					},
+					debug : false
+				});
+			}
+
+			$('#dict31').slwSelect({
+				'data' : [ '模板类型', '实体类型' ],
+				selectInputQuery : false,
+				debug : false,
+				onClick : function(item) {
+					var dict = item.value == '模板类型' ? 'd_generator@d_template_type' : 'd_generator@d_entity_type';
+					dict32.refreshData(dict, 1);
+				}
+			});
+			$('#dict41').slwSelect({
+				'data' : [ '字符串', '日期、数字', '下拉选择' ],
+				selectInputQuery : false,
+				debug : false,
+				onClick : function(item) {
+					dict42.refresh();
+				}
+			});
+			
+			var dictArray = [ 'd_generator@d_entity_type', 'd_generator@d_template_type', 'd_generator@QuerySetting', 'd_root@d_sex' ];
+			$jqdict.loadDict(dictArray, dictInput);
+			
+		});
+	</script>
+</body>
+</html>

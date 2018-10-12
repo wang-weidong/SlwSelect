@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Slwcomplete demo</title>
+<script type="text/javascript" src="jquery-1.7.min.js"></script>
+<script type="text/javascript" src="../slw.js"></script>
+<script type="text/javascript" src="../slw.complete.js"></script>
+<script type="text/javascript" src="../slw.select.js"></script>
+<link rel="stylesheet" href="../style/select.css" type="text/css" />
+</head>
+
+<body>
+	<h1>Slwcomplete Demo</h1>
+	<h2>base on &lt;select&gt; &lt;option&gt;</h2>
+	
+	<div style="margin: 20px">
+		<table class="table table-bordered editTable form-group-sm">
+			<thead>
+				<tr>
+					<th colspan="12">表单</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="firstRow">
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+					<td colspan="1" class="col-md-1"></td>
+				</tr>
+
+				<tr>
+					<td class="tdLable" colspan="3">单选下拉框1</td>
+					<td colspan="9"><select id="entityType" name="entityType" class="form-control">
+							<option value="1" selected="">单表</option>
+							<option value="2">树型表</option>
+							<option value="3">主表（一对多）</option>
+							<option value="4">子表（一对多）</option>
+							<option value="5">子表（一对一）</option>
+							<option value="6">关联型主表</option>
+							<option value="7">关联型子表</option>
+							<option value="8">关联关系表</option>
+					</select></td>
+				</tr>
+
+				<tr>
+					<td class="tdLable" colspan="3">单选下拉框2</td>
+					<td colspan="9"><select id="entityType2" name="entityType2" class="form-control"><option value="1">单表</option>
+							<option value="2" selected="">树型表</option>
+							<option value="3">主表（一对多）</option>
+							<option value="4">子表（一对多）</option>
+							<option value="5">子表（一对一）</option>
+							<option value="6">关联型主表</option>
+							<option value="7">关联型子表</option>
+							<option value="8">关联关系表</option></select></td>
+				</tr>
+				<tr>
+					<td class="tdLable" colspan="3">单选下拉框3</td>
+					<td colspan="9"><select id="entityType3" name="entityType3" class="form-control"><option value="1">单表</option>
+							<option value="2">树型表</option>
+							<option value="3">主表（一对多）</option>
+							<option value="4">子表（一对多）</option>
+							<option value="5">子表（一对一）</option>
+							<option value="6">关联型主表</option>
+							<option value="7">关联型子表</option>
+							<option value="8">关联关系表</option></select></td>
+				</tr>
+				<tr>
+					<td class="tdLable" colspan="3">多选下拉框3</td>
+					<td colspan="9"><select id="entityType4" name="entityType4" class="form-control" multiple=""><option value="1">单表</option>
+							<option value="2">树型表</option>
+							<option value="3">主表（一对多）</option>
+							<option value="4" selected="">子表（一对多）</option>
+							<option value="5">子表（一对一）</option>
+							<option value="6">关联型主表</option>
+							<option value="7">关联型子表</option>
+							<option value="8">关联关系表</option></select></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<script>
+		$(function() {
+			$('#entityType').slwSelect();
+			$('#entityType2').slwSelect({
+				selectInputQuery : false
+			});
+			$('#entityType3').slwSelect({
+				maxHeight : 200
+			});
+			$('#entityType4').slwSelect({
+				debug : false
+			});
+			
+		});
+	</script>
+</body>
+</html>
