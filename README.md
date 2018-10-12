@@ -9,7 +9,7 @@ Licensed under the MIT License
 [Demo2](https://wang-weidong.github.io/SlwSelect/demo/ext.html "Demo")
 
 ## Browser Support ##
-- Internet Explorer: 6, 7, 8, 9, 10, 11
+- Internet Explorer: 7, 8, 9, 10, 11
 - Chrome
 - Edge
 - Firefox
@@ -19,4 +19,4 @@ Licensed under the MIT License
 ## License ##
 Copyright (c) 2018 WangWeidong
 
-SlwSelect/slw.Selectr.js is released under the MIT license.
+SlwSelect/slw.Select.js is released under the MIT license.
